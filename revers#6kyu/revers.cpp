@@ -60,5 +60,8 @@ std::string spinWords(const std::string& str)
 			new_str += " ";
 		}
 	}
+
+	if (!new_str.empty() && new_str.back() == ' ')
+		new_str.pop_back();
 	return new_str;
 }
