@@ -1,96 +1,64 @@
 ﻿#include <iostream>
+#include <vector>
 
 std::string spinWords(const std::string& str)
 {
-	std::string _New_str = str;
+	std::vector<std::string> rev_str;
+	std::string new_str = str;
+	int size = new_str.size();
 	char ch[255];
 	int i = 0;
-	int size = _New_str.size();
-
 	while (i < size)
 	{
-		ch[i] = _New_str[i];
-		//if (ch[i] == ' ') { break; }
+		ch[i] = new_str[i];
 		++i;
 	}
-	int k = 0;
-	std::string merger_char = "";
-	std::string resers = "";
-
-	//Это основной цикл который должен перебрать все слово
-	while (true)
+	for (int i = 0; i < size; i++)
 	{
+		std::string f;
+		f += ch[i];
+		rev_str.push_back(f);
+	}
+	std::string full_str;
+	new_str = "";
+	int j = 0;
+	std::string s;
+	for (size_t i = 0; i < rev_str.size(); i++)
+	{
+		s += rev_str[i];
+	}
 
-		while (true)
+	while (j < size)
+	{
+		full_str = "";
+		if (s[j] == ' ')
 		{
-			if (ch[k] == ' ')
-			{
-				continue; //Это я не протестировал не знаю как сработает 
-			}
-			merger_char += ch[k]; //строка принимает из массива по идеи она должна принить до пробела не знаю почему он светиться зеленным 
-
-			if (ch[k] == ' ') //если массив доходит до пробела выхожим
+			++j;
+			continue;
+		}
+		while (s[j] != ' ')
+		{
+			full_str += s[j];
+			++j;
+			if (j >= size)
 			{
 				break;
 			}
-			++k;
 		}
-		if (merger_char.size() >= 5)
+
+		if (full_str.size() >= 5)
 		{
-			//Реверс строки 
-			for (int i = merger_char.size() - 1; i >= 0; --i)
+			for (int j = full_str.size(); j >= 0; --j)
 			{
-				resers += ch[i];
+				new_str += full_str[j];
 			}
+			new_str += " ";
 		}
-		//слияние строк 
 		else
 		{
-			resers += merger_char;
-		}
-		std::cout << resers;
-		//Условия выхода из цикла основного 
-		if (k >= size)
-		{
-			break;
+			new_str += full_str;
+			new_str += " ";
 		}
 	}
-
-	//while (true)
-	//{
-	//	int j = 0;
-
-
-	//	_New_str = "";
-	//	for (int i = merger_char.size(); i >= 0; i++)
-	//	{
-	//		_New_str[i] += merger_char[i];
-	//	}
-	//	std::cout << _New_str;
-	//}
-
-	for (int k = 0; k <= 5; k++)
-		merger_char += ch[k];
-
-
-	if (merger_char.size() >= 5)
-	{
-		for (int i = merger_char.size(); i >= 0; --i)
-		{
-			std::cout << merger_char[i];
-		}
-	}
-
-
-	return str;
-}
-
-int main()
-{
-	setlocale(LC_ALL, "ru");
-
-
-	spinWords("Hello worl");
-
-	return 0;
+	return new_str;
 }
