@@ -27,7 +27,9 @@ std::string likes(const std::vector<std::string>& names)
 		std::string people_one, people_two;
 		people_one = names[0];
 		people_two = names[1];
-		std::cout << people_one << " and " << people_two << " likes this";
+		std::string s;
+		s = people_one + " and " + people_two + " like this";
+		return s;
 	}
 
 	if (names.size() == 3)
@@ -37,28 +39,32 @@ std::string likes(const std::vector<std::string>& names)
 		people_two = names[1];
 		people_three = names[2];
 
-		std::cout << people_one << ", " << people_two << " and "
-			<< people_three << " like this";
+		std::string s;
+		s = people_one + ", " + people_two + " and " + people_three
+			+ " like this";
+		return s;
 	}
 
 	if (names.size() >= 4)
 	{
-		for (auto a : names)
-		{
-
-		}
+		std::string people_one, people_two;
+		std::string s;
+		int count = names.size() - 2;
+		
+		people_one = names[0];
+		people_two = names[1];
+		//Преобразовал число в строку для добаввления числа в переменную 's'
+		s = people_one + ", " + people_two + " and " + std::to_string(count)
+			+ " others like this";
+		return s;
 	}
-
-
-
-
 }
 
 int main()
 {
 	setlocale(LC_ALL, "ru");
 
-	std::vector<std::string> names = {"Peter"};
+	std::vector<std::string> names = { "Alex", "Jacob", "Mark", "Max" };
 
 	std::cout << likes(names);
 
