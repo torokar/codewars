@@ -5,6 +5,12 @@
 class Solution {
 public:
     bool isPalindrome(int x) {
+
+        if (x <= 0)
+        {
+            return false;
+        }
+
         std::string revers;
         std::string check_revers;
         revers = std::to_string(x);
@@ -25,7 +31,7 @@ int main()
     setlocale(LC_ALL, "ru");
 
     Solution sol;
-    std::cout << sol.isPalindrome(101);
+    std::cout << sol.isPalindrome(-101);
 
     return 0;
 }
