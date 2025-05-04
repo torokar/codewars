@@ -42,4 +42,5 @@
 - **Codewars**: [torokar](https://www.codewars.com/users/torokar)  
 - **LeetCode**: [torokar](https://leetcode.com/u/torokar/)  
 
-«Если решение найдено через ChatGPT/CoPilot — оно не попадает в этот репозиторий.»
+«Если решение найдено через ChatGPT/CoPilot — оно не попадает в этот репозиторий.» 
+Напишите мне если одно из решений было сгенериравано нейросетью и я его удалю!
