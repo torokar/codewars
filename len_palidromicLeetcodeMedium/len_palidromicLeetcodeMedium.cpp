@@ -1,5 +1,6 @@
 ﻿#include <iostream>
 #include <string>
+#include <set>
 
 class Solution 
 {
@@ -13,8 +14,10 @@ class Solution
 самый большой
 */
 public:
+
     std::string longestPalindrome(std::string s) 
     {
+        std::set<std::string> max_size_str;
         std::string one_str, two_str;
         std::string Line_redu = s;
         int i = 0;
@@ -52,6 +55,10 @@ public:
                 
                 one_str += Line_redu[i];
                 ++i;
+                if (Line_redu.size() == 0)
+                {
+                    break;
+                }
                 if (one_str.size() <= 1)
                 {
                     continue;
@@ -70,7 +77,8 @@ public:
 
                 if (one_str == two_str)
                 {
-                    return one_str;
+                    max_size_str.insert(one_str);
+                    /*return one_str;*/
                 }
                 std::reverse(two_str.begin(), two_str.end());
 
@@ -85,7 +93,34 @@ public:
                     two_str = "";
                 }
             }
+            
         }
+
+        std::string str;
+        std::set<std::string>::iterator second = max_size_str.end();
+        std::set<std::string>::iterator first = max_size_str.begin();
+        //Ну хз условия вернуть палидром в длиною 1 символ 
+        if (!max_size_str.empty())
+        {
+
+            for (; first != second; ++first)
+            {
+                str = *first;
+                for (auto first2 : max_size_str)
+                {
+                    if (str.size() < first2.size())
+                    {
+                        str = first2;
+                    }
+                }
+            }
+        }
+        else
+        {
+            str = s[0];
+        }
+
+        return str;
     }
 };
 
@@ -94,7 +129,7 @@ int main()
     setlocale(LC_ALL, "ru");
 
     Solution sol;
-    std::cout << sol.longestPalindrome("as");
+    std::cout << sol.longestPalindrome("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabcaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
 
     return 0;
 }
